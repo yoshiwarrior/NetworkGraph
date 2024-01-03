@@ -493,7 +493,7 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Apeks", "label": "Apeks", "shape": "dot", "title": "Unterprgramm von leer"}, {"color": "#97c2fc", "id": "Achilles", "label": "Achilles", "shape": "dot", "title": "Unterprgramm von Apeks"}, {"color": "#97c2fc", "id": "CAQ", "label": "CAQ", "shape": "dot", "title": "Unterprgramm von leer"}, {"color": "#97c2fc", "id": "Greenpocket", "label": "Greenpocket", "shape": "dot", "title": "Unterprgramm von CAQ"}, {"color": "#97c2fc", "id": "test", "label": "test", "shape": "dot", "title": "Unterprgramm von Achilles"}, {"color": "#97c2fc", "id": "jes", "label": "jes", "shape": "dot", "title": "Unterprgramm von Apeks"}]);
+                  nodes = new vis.DataSet([{"color": "red", "id": "Apeks", "label": "Apeks", "shape": "dot", "title": "Hauptprgramm"}, {"color": "blue", "id": "Achilles", "label": "Achilles", "shape": "dot", "title": "Unterprogramm von Apeks"}, {"color": "red", "id": "CAQ", "label": "CAQ", "shape": "dot", "title": "Hauptprgramm"}, {"color": "blue", "id": "Greenpocket", "label": "Greenpocket", "shape": "dot", "title": "Unterprogramm von CAQ"}, {"color": "blue", "id": "test", "label": "test", "shape": "dot", "title": "Unterprogramm von Achilles"}, {"color": "blue", "id": "jes", "label": "jes", "shape": "dot", "title": "Unterprogramm von Apeks"}]);
                   edges = new vis.DataSet([{"from": "Achilles", "to": "Apeks"}, {"from": "Greenpocket", "to": "CAQ"}, {"from": "test", "to": "Achilles"}, {"from": "jes", "to": "Apeks"}]);
 
                   nodeColors = {};

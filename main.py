@@ -4,19 +4,20 @@ import pandas as pd
 
 
 if __name__ == '__main__':
-    net = Network(notebook=True, cdn_resources="remote", select_menu=True, filter_menu=True)
-    df = pd.read_csv('list.CSV', sep=';')
-    df["Parent Node"].fillna("leer", inplace=True)
-    parent = df['Parent Node']
-    count = 0
-    for x in df['Name']:
-        net.add_node(x, title = "Unterprgramm von " + parent[count])
-        if parent[count] == "leer":
-            count += 1
-            continue
+    net = Network(notebook=True, cdn_resources="remote", select_menu=True, filter_menu=True)                    #Graph initialisieren
+    df = pd.read_csv('list.CSV', sep=';')                                                         #CSV-Datei wird ausgelesen
+    df["Parent Node"].fillna("leer", inplace=True)                                                              #Leere Felder werden gefüllt
+
+    nameList = df['Name']                                                                                       #Zugriff auf Spalten
+    parentList = df['Parent Node']
+    indexList = df['Index']
+
+    for index in indexList:                                                                                      #Iteriere über Liste
+        if parentList[index] == "leer":
+            net.add_node(nameList[index], title="Hauptprgramm", color="red")                                     #Füge Haptprogramme als rote Nodes ein
         else:
-            net.add_edge(x, parent[count])
-            count += 1
-    net.show('test.html')
+            net.add_node(nameList[index], title="Unterprogramm von " + parentList[index], color="blue")          #Füge Unterprogramme als blaue Nodes ein
+            net.add_edge(nameList[index], parentList[index])                                                     #Füge Kante zwischen Nodes ein
+    net.show('test.html')                                                                                        #Output html-Datei
 
 

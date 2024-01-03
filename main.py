@@ -3,6 +3,15 @@ from pyvis.network import Network
 import pandas as pd
 
 
+def parseList(param):
+    output = []
+    if "|" not in param:
+        output.append(param)
+        return output
+    else:
+        return param.split("|")
+
+
 if __name__ == '__main__':
     net = Network(notebook=True, cdn_resources="remote", select_menu=True, filter_menu=True)                    #Graph initialisieren
     df = pd.read_csv('list.CSV', sep=';')                                                         #CSV-Datei wird ausgelesen
@@ -14,10 +23,14 @@ if __name__ == '__main__':
 
     for index in indexList:                                                                                      #Iteriere über Liste
         if parentList[index] == "leer":
-            net.add_node(nameList[index], title="Hauptprgramm", color="red")                                     #Füge Haptprogramme als rote Nodes ein
+            net.add_node(nameList[index], title="Hauptprgramm", color="red")                                     #Fuege Hauptprogramme als rote Knoten ein
         else:
-            net.add_node(nameList[index], title="Unterprogramm von " + parentList[index], color="blue")          #Füge Unterprogramme als blaue Nodes ein
-            net.add_edge(nameList[index], parentList[index])                                                     #Füge Kante zwischen Nodes ein
+            net.add_node(nameList[index], title="Unterprogramm von " + parentList[index], color="blue")          #Fuege Unterprogramme als blaue Knoten ein
+
+    for index in indexList:
+        for parents in parseList(parentList[index]):
+            if parentList[index] != "leer":
+                net.add_edge(nameList[index], parents)                                                           #Fuege Kanten hinzu
     net.show('test.html')                                                                                        #Output html-Datei
 
 

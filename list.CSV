@@ -1,7 +1,8 @@
 Name;Firma;Fachbereich;Verantwortlicher;Status;Parent Node;Index
-Apeks;SNH;Asset-Service;aaa;Produktiv;;0
-Achilles;SNH;Beschaffung;bbb;Produktiv;Apeks;1
-CAQ;SNH;Asset Management;ccc;Test;;2
-Greenpocket;GNH;Metering;ddd;Produktiv;CAQ;3
-test;SNH;bla;eee;Test;Achilles;4
-jes;GNH;12;fff;Produktiv;Apeks;5
+Apeks;A;Asset-Service;aaa;Produktiv;;0
+Achilles;A;Beschaffung;bbb;Produktiv;Apeks;1
+CAQ;A;Asset Management;ccc;Test;;2
+Greenpocket;B;Metering;ddd;Produktiv;CAQ;3
+test;A;bla;eee;Test;Achilles|Apache;4
+jes;B;IT;fff;Produktiv;Apeks;5
+Apache;B;IA;aaa;Entwicklung;;6

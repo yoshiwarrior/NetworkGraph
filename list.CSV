@@ -3,6 +3,6 @@ Apeks;A;Asset-Service;aaa;Produktiv;;0
 Achilles;A;Beschaffung;bbb;Produktiv;Apeks;1
 CAQ;A;Asset Management;ccc;Test;;2
 Greenpocket;B;Metering;ddd;Produktiv;CAQ;3
-test;A;bla;eee;Test;Achilles|Apache;4
+test;A;bla;eee;Test;Achilles,Apache,CAQ;4
 jes;B;IT;fff;Produktiv;Apeks;5
 Apache;B;IA;aaa;Entwicklung;;6

@@ -11,11 +11,35 @@ def parseList(param):
         return param.split(",")
 
 
-def setColor(param):
-    if param == "A":
+def setColor(firma):
+    if firma == "A":
         return "blue"
-    elif param == "B":
+    elif firma == "B":
         return "green"
+
+
+#TODO nicht nur als Text anzeigen, sondern als Attribut hinterlegen ->wrapper Klasse?
+def setNodeTitle(index):
+    title = ""
+    if parentList[index] == "leer":
+        title += "Hauptprogramm"
+    else:
+        title += "Unterprogramm von " + parentList[index].replace(",", " und ")
+    title += "\nFirma: " + firmaList[index] + "\nVerantwortlicher: " + personList[index]
+    title += "\nFachbreich: " + bereichList[index]
+    return title
+
+
+def addNodes():
+    for index in indexList:
+        net.add_node(nameList[index], title=setNodeTitle(index), color=setColor(firmaList[index]))               #Fuege Hauptprogramme mit Farbe je nach Firma ein
+
+
+def addEdges():
+    for index in indexList:
+        for parents in parseList(parentList[index]):
+            if parentList[index] != "leer":
+                net.add_edge(nameList[index], parents)                                                           #Fuege Kanten hinzu
 
 
 if __name__ == "__main__":
@@ -30,16 +54,9 @@ if __name__ == "__main__":
     parentList = df["Parent Node"]
     indexList = df["Index"]
 
-    for index in indexList:                                                                                      #Iteriere über Liste
-        if parentList[index] == "leer":
-            net.add_node(nameList[index], title="Hauptprogramm", color=setColor(firmaList[index]))               #Fuege Hauptprogramme mit Farbe je nach Firma ein
-        else:
-            net.add_node(nameList[index], title="Unterprogramm von " + parentList[index], color=setColor(firmaList[index]))          #Fuege Unterprogramme
+    addNodes()
+    addEdges()
 
-    for index in indexList:
-        for parents in parseList(parentList[index]):
-            if parentList[index] != "leer":
-                net.add_edge(nameList[index], parents)                                                           #Fuege Kanten hinzu
     net.show("test.html")                                                                                        #Output html-Datei
 
 
